@@ -1,0 +1,1524 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register | MediSuggest-ML</title>
+
+
+    <style>
+
+        /* =========================
+           GLOBAL STYLES
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #087df5;
+            --primary-dark: #0756b8;
+            --text-dark: #17375f;
+            --text-muted: #8799ae;
+            --border: #dbe7f2;
+            --background: #f2f7fd;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: var(--background);
+            color: var(--text-dark);
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        input,
+        button {
+            font-family: inherit;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            height: 78px;
+            background: rgba(255, 255, 255, 0.98);
+            border-bottom: 1px solid #e4edf7;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6%;
+        }
+
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 13px;
+            background: linear-gradient(135deg, #087df5, #00b8d9);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 23px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(8, 125, 245, 0.18);
+        }
+
+
+        .logo-text h2 {
+            font-size: 20px;
+            color: #0756b8;
+            line-height: 1.2;
+        }
+
+
+        .logo-text span {
+            display: block;
+            font-size: 10px;
+            color: #8193a9;
+            margin-top: 3px;
+        }
+
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+
+        .nav-links a {
+            color: #60758e;
+            font-size: 13px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+
+        .nav-login {
+            background: #087df5;
+            color: white !important;
+            padding: 11px 20px;
+            border-radius: 9px;
+        }
+
+
+        .nav-login:hover {
+            background: var(--primary-dark) !important;
+        }
+
+
+        /* =========================
+           MAIN SECTION
+        ========================= */
+
+        .register-section {
+            min-height: calc(100vh - 78px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 45px 20px;
+            background:
+                radial-gradient(circle at 10% 20%, #e2f3ff, transparent 32%),
+                radial-gradient(circle at 90% 80%, #dceeff, transparent 30%),
+                #f2f7fd;
+        }
+
+
+        .register-wrapper {
+            width: 100%;
+            max-width: 1050px;
+            display: grid;
+            grid-template-columns: 0.92fr 1.08fr;
+            background: white;
+            border: 1px solid #e2edf8;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 20px 70px rgba(23, 74, 120, 0.12);
+        }
+
+
+        /* =========================
+           LEFT PANEL
+        ========================= */
+
+        .register-info {
+            background: linear-gradient(145deg, #087df5, #0756b8);
+            color: white;
+            padding: 45px 38px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        .register-info::before {
+            content: "";
+            position: absolute;
+            width: 330px;
+            height: 330px;
+            border: 40px solid rgba(255, 255, 255, 0.07);
+            border-radius: 50%;
+            top: -150px;
+            right: -160px;
+        }
+
+
+        .register-info::after {
+            content: "";
+            position: absolute;
+            width: 280px;
+            height: 280px;
+            border: 30px solid rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            bottom: -160px;
+            left: -160px;
+        }
+
+
+        .info-content {
+            position: relative;
+            z-index: 1;
+        }
+
+
+        .info-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 12px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+
+        .register-info h1 {
+            font-size: 36px;
+            line-height: 1.25;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+
+        .register-info h1 span {
+            color: #b9e6ff;
+        }
+
+
+        .register-info p {
+            font-size: 13px;
+            line-height: 1.9;
+            color: #d7ebff;
+            max-width: 340px;
+        }
+
+
+        .info-features {
+            position: relative;
+            z-index: 1;
+            margin-top: 35px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+
+        .info-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 12px;
+            color: #e2f2ff;
+        }
+
+
+        .info-feature-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.13);
+            border: 1px solid rgba(255, 255, 255, 0.13);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+
+        .info-bottom {
+            position: relative;
+            z-index: 1;
+            font-size: 10px;
+            color: #a9d2f3;
+            margin-top: 35px;
+        }
+
+
+        /* =========================
+           FORM PANEL
+        ========================= */
+
+        .register-form-panel {
+            padding: 42px 52px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+
+        .form-heading {
+            margin-bottom: 27px;
+        }
+
+
+        .form-heading .small-label {
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+
+        .form-heading h2 {
+            font-size: 29px;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+
+        .form-heading p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+
+        /* =========================
+           ERROR MESSAGE
+        ========================= */
+
+        .error {
+            background: #fff0f1;
+            border: 1px solid #ffd0d4;
+            color: #d33f4d;
+            padding: 12px 14px;
+            border-radius: 9px;
+            font-size: 12px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+
+        .success {
+            background: #e9f9f0;
+            border: 1px solid #c6efd7;
+            color: #18824b;
+            padding: 12px 14px;
+            border-radius: 9px;
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+
+
+        /* =========================
+           FORM GRID
+        ========================= */
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+
+        .form-group {
+            margin-bottom: 17px;
+            min-width: 0;
+        }
+
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            color: #425d7a;
+            margin-bottom: 8px;
+        }
+
+
+        .required {
+            color: #e05260;
+        }
+
+
+        .input-wrapper {
+            position: relative;
+        }
+
+
+        .input-icon {
+            position: absolute;
+            left: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9cafc3;
+            font-size: 15px;
+            pointer-events: none;
+        }
+
+
+        .form-input {
+            width: 100%;
+            padding: 13px 13px 13px 40px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            outline: none;
+            background: #fbfdff;
+            color: var(--text-dark);
+            font-size: 12px;
+            transition: 0.3s;
+        }
+
+
+        .form-input::placeholder {
+            color: #a8b7c8;
+        }
+
+
+        .form-input:focus {
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(8, 125, 245, 0.08);
+        }
+
+
+        .password-input {
+            padding-right: 42px;
+        }
+
+
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: transparent;
+            color: #849ab1;
+            font-size: 15px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+
+        .password-toggle:hover {
+            color: var(--primary);
+        }
+
+
+        .field-hint {
+            display: block;
+            color: #9aabbe;
+            font-size: 10px;
+            margin-top: 6px;
+            line-height: 1.5;
+        }
+
+
+        .field-error {
+            color: #d33f4d;
+            font-size: 10px;
+            margin-top: 5px;
+            display: none;
+        }
+
+
+        /* =========================
+           PASSWORD STRENGTH
+        ========================= */
+
+        .strength-wrapper {
+            margin-top: 8px;
+            display: none;
+        }
+
+
+        .strength-bars {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 5px;
+        }
+
+
+        .strength-bar {
+            height: 4px;
+            flex: 1;
+            background: #e7edf4;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+
+        .strength-text {
+            font-size: 10px;
+            color: #9aabbe;
+        }
+
+
+        /* =========================
+           TERMS CHECKBOX
+        ========================= */
+
+        .terms-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            font-size: 11px;
+            color: #8193a9;
+            line-height: 1.6;
+            cursor: pointer;
+            margin: 3px 0 22px;
+        }
+
+
+        .terms-label input {
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+            margin-top: 2px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+
+        .terms-label a {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+
+        /* =========================
+           REGISTER BUTTON
+        ========================= */
+
+        .register-button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #087df5, #0756b8);
+            color: white;
+            font-size: 13px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(8, 125, 245, 0.17);
+            transition: 0.3s;
+        }
+
+
+        .register-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(8, 125, 245, 0.28);
+        }
+
+
+        .register-button:active {
+            transform: translateY(0);
+        }
+
+
+        .register-prompt {
+            text-align: center;
+            margin-top: 22px;
+            color: #91a1b4;
+            font-size: 12px;
+        }
+
+
+        .register-prompt a {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+
+        .register-prompt a:hover {
+            text-decoration: underline;
+        }
+
+
+        .form-footer {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 18px;
+            border-top: 1px solid #edf2f7;
+            color: #a0afc0;
+            font-size: 10px;
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           RESPONSIVE DESIGN
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .navbar {
+                padding: 0 25px;
+            }
+
+            .register-wrapper {
+                max-width: 600px;
+                grid-template-columns: 1fr;
+            }
+
+            .register-info {
+                padding: 35px 30px;
+            }
+
+            .register-info h1 {
+                font-size: 29px;
+            }
+
+            .info-features {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
+                margin-top: 25px;
+            }
+
+            .info-feature {
+                flex-direction: column;
+                text-align: center;
+                font-size: 11px;
+                gap: 7px;
+            }
+
+            .info-bottom {
+                margin-top: 25px;
+            }
+
+            .register-form-panel {
+                padding: 40px 35px;
+            }
+
+        }
+
+
+        @media (max-width: 550px) {
+
+            .navbar {
+                height: auto;
+                min-height: 70px;
+                padding: 15px 20px;
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+
+            .nav-links {
+                gap: 14px;
+            }
+
+            .nav-links a {
+                font-size: 11px;
+            }
+
+            .nav-login {
+                padding: 8px 12px;
+            }
+
+            .register-section {
+                padding: 25px 12px;
+            }
+
+            .register-wrapper {
+                border-radius: 18px;
+            }
+
+            .register-info {
+                padding: 30px 25px;
+            }
+
+            .register-info h1 {
+                font-size: 27px;
+            }
+
+            .register-info p {
+                font-size: 12px;
+            }
+
+            .info-features {
+                grid-template-columns: 1fr;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .info-feature {
+                flex-direction: row;
+                text-align: left;
+            }
+
+            .register-form-panel {
+                padding: 35px 25px;
+            }
+
+            .form-heading h2 {
+                font-size: 26px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .full-width {
+                grid-column: auto;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <header class="navbar">
+
+
+        <a href="/" class="logo">
+
+
+            <div class="logo-icon">
+                ♥
+            </div>
+
+
+            <div class="logo-text">
+
+                <h2>MediSuggest</h2>
+
+                <span>Medicine Recommendation System</span>
+
+            </div>
+
+
+        </a>
+
+
+
+        <nav class="nav-links">
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/login/">
+                Login
+            </a>
+
+            <a href="/register/" class="active nav-login">
+                Register
+            </a>
+
+        </nav>
+
+
+    </header>
+
+
+
+    <!-- =========================
+         REGISTRATION SECTION
+    ========================= -->
+
+    <main class="register-section">
+
+
+        <div class="register-wrapper">
+
+
+
+            <!-- =========================
+                 LEFT INFORMATION PANEL
+            ========================= -->
+
+            <section class="register-info">
+
+
+                <div class="info-content">
+
+
+                    <div class="info-badge">
+                        ✦ Join MediSuggest-ML
+                    </div>
+
+
+                    <h1>
+                        Begin Your<br>
+                        <span>Health Insight</span><br>
+                        Journey.
+                    </h1>
+
+
+                    <p>
+                        Create your account to access the
+                        MediSuggest-ML platform and explore
+                        health information and recommendation
+                        features.
+                    </p>
+
+
+
+                    <div class="info-features">
+
+
+                        <div class="info-feature">
+
+                            <div class="info-feature-icon">
+                                🩺
+                            </div>
+
+                            Health Information
+
+                        </div>
+
+
+
+                        <div class="info-feature">
+
+                            <div class="info-feature-icon">
+                                🧠
+                            </div>
+
+                            ML-Based Analysis
+
+                        </div>
+
+
+
+                        <div class="info-feature">
+
+                            <div class="info-feature-icon">
+                                🔒
+                            </div>
+
+                            Secure Account
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="info-bottom">
+
+                    © 2026 MediSuggest-ML | Academic Project
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =========================
+                 REGISTRATION FORM
+            ========================= -->
+
+            <section class="register-form-panel">
+
+
+                <div class="form-heading">
+
+
+                    <span class="small-label">
+                        Create Account
+                    </span>
+
+
+                    <h2>
+                        Get Started! 👋
+                    </h2>
+
+
+                    <p>
+                        Enter your details to create your account.
+                    </p>
+
+
+                </div>
+
+
+
+                <!-- ERROR MESSAGE -->
+
+                {% if error %}
+
+                    <div class="error" role="alert">
+
+                        ⚠️ {{ error }}
+
+                    </div>
+
+                {% endif %}
+
+
+
+                <!-- SUCCESS MESSAGE -->
+
+                {% if success %}
+
+                    <div class="success" role="status">
+
+                        ✓ {{ success }}
+
+                    </div>
+
+                {% endif %}
+
+
+
+                <!-- REGISTRATION FORM -->
+
+                <form method="POST" action="/register/" id="registerForm">
+
+                    {% csrf_token %}
+
+
+
+                    <div class="form-grid">
+
+
+
+                        <!-- USERNAME -->
+
+                        <div class="form-group full-width">
+
+
+                            <label for="user_name">
+
+                                User Name
+
+                                <span class="required">*</span>
+
+                            </label>
+
+
+                            <div class="input-wrapper">
+
+
+                                <span class="input-icon">
+                                    ◉
+                                </span>
+
+
+                                <input
+                                    type="text"
+                                    id="user_name"
+                                    name="user_name"
+                                    class="form-input"
+                                    placeholder="Enter your username"
+                                    autocomplete="username"
+                                    minlength="3"
+                                    maxlength="50"
+                                    required
+                                >
+
+
+                            </div>
+
+
+                            <span class="field-hint">
+                                Use at least 3 characters.
+                            </span>
+
+
+                        </div>
+
+
+
+                        <!-- MOBILE NUMBER -->
+
+                        <div class="form-group">
+
+
+                            <label for="mobile_number">
+
+                                Mobile Number
+
+                                <span class="required">*</span>
+
+                            </label>
+
+
+                            <div class="input-wrapper">
+
+
+                                <span class="input-icon">
+                                    ☎
+                                </span>
+
+
+                                <input
+                                    type="tel"
+                                    id="mobile_number"
+                                    name="mobile_number"
+                                    class="form-input"
+                                    placeholder="10-digit number"
+                                    inputmode="numeric"
+                                    pattern="[0-9]{10}"
+                                    maxlength="10"
+                                    autocomplete="tel"
+                                    required
+                                >
+
+
+                            </div>
+
+
+                            <span class="field-hint">
+                                Enter a valid 10-digit mobile number.
+                            </span>
+
+
+                        </div>
+
+
+
+                        <!-- PLACE -->
+
+                        <div class="form-group">
+
+
+                            <label for="place">
+
+                                Place
+
+                                <span class="required">*</span>
+
+                            </label>
+
+
+                            <div class="input-wrapper">
+
+
+                                <span class="input-icon">
+                                    ⌖
+                                </span>
+
+
+                                <input
+                                    type="text"
+                                    id="place"
+                                    name="place"
+                                    class="form-input"
+                                    placeholder="Enter your place"
+                                    maxlength="100"
+                                    autocomplete="address-level2"
+                                    required
+                                >
+
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <!-- PASSWORD -->
+
+                        <div class="form-group">
+
+
+                            <label for="password">
+
+                                Password
+
+                                <span class="required">*</span>
+
+                            </label>
+
+
+                            <div class="input-wrapper">
+
+
+                                <span class="input-icon">
+                                    🔒
+                                </span>
+
+
+                                <input
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    class="form-input password-input"
+                                    placeholder="Create password"
+                                    minlength="8"
+                                    autocomplete="new-password"
+                                    required
+                                >
+
+
+                                <button
+                                    type="button"
+                                    class="password-toggle"
+                                    id="togglePassword"
+                                    aria-label="Show password"
+                                >
+                                    👁
+                                </button>
+
+
+                            </div>
+
+
+                            <span class="field-hint">
+                                Use at least 8 characters.
+                            </span>
+
+
+                            <div class="strength-wrapper" id="strengthWrapper">
+
+
+                                <div class="strength-bars">
+
+                                    <div class="strength-bar"></div>
+
+                                    <div class="strength-bar"></div>
+
+                                    <div class="strength-bar"></div>
+
+                                    <div class="strength-bar"></div>
+
+                                </div>
+
+
+                                <span class="strength-text" id="strengthText">
+                                    Password strength
+                                </span>
+
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <!-- CONFIRM PASSWORD -->
+
+                        <div class="form-group">
+
+
+                            <label for="confirm_password">
+
+                                Confirm Password
+
+                                <span class="required">*</span>
+
+                            </label>
+
+
+                            <div class="input-wrapper">
+
+
+                                <span class="input-icon">
+                                    🔐
+                                </span>
+
+
+                                <input
+                                    type="password"
+                                    id="confirm_password"
+                                    name="confirm_password"
+                                    class="form-input password-input"
+                                    placeholder="Confirm password"
+                                    minlength="8"
+                                    autocomplete="new-password"
+                                    required
+                                >
+
+
+                                <button
+                                    type="button"
+                                    class="password-toggle"
+                                    id="toggleConfirmPassword"
+                                    aria-label="Show confirm password"
+                                >
+                                    👁
+                                </button>
+
+
+                            </div>
+
+
+                            <span class="field-error" id="passwordError">
+
+                                Passwords do not match.
+
+                            </span>
+
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+                    <!-- TERMS -->
+
+                    <label class="terms-label">
+
+
+                        <input
+                            type="checkbox"
+                            name="terms_accepted"
+                            value="1"
+                            required
+                        >
+
+
+                        <span>
+
+                            I agree to the platform's
+                            <a href="/terms/">
+                                Terms & Conditions
+                            </a>
+                            and understand that the platform
+                            provides informational health insights.
+
+                        </span>
+
+
+                    </label>
+
+
+
+                    <!-- REGISTER BUTTON -->
+
+                    <button
+                        type="submit"
+                        class="register-button"
+                    >
+
+                        Create Account →
+
+                    </button>
+
+
+
+                </form>
+
+
+
+                <!-- LOGIN LINK -->
+
+                <p class="register-prompt">
+
+                    Already have an account?
+
+                    <a href="/login/">
+                        Login Here
+                    </a>
+
+                </p>
+
+
+
+                <!-- FOOTER -->
+
+                <div class="form-footer">
+
+                    🔒 Protect your account credentials.<br>
+
+                    MediSuggest-ML | Informational Healthcare Platform
+
+                </div>
+
+
+            </section>
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+
+        // PASSWORD VISIBILITY TOGGLE
+
+        function setupPasswordToggle(buttonId, inputId) {
+
+            const button =
+                document.getElementById(buttonId);
+
+            const input =
+                document.getElementById(inputId);
+
+
+            button.addEventListener("click", function () {
+
+                const isPassword =
+                    input.type === "password";
+
+
+                input.type =
+                    isPassword ? "text" : "password";
+
+
+                button.textContent =
+                    isPassword ? "🙈" : "👁";
+
+
+                button.setAttribute(
+                    "aria-label",
+                    isPassword ? "Hide password" : "Show password"
+                );
+
+            });
+
+        }
+
+
+        setupPasswordToggle(
+            "togglePassword",
+            "password"
+        );
+
+
+        setupPasswordToggle(
+            "toggleConfirmPassword",
+            "confirm_password"
+        );
+
+
+
+        // PASSWORD STRENGTH INDICATOR
+
+        const passwordInput =
+            document.getElementById("password");
+
+        const strengthWrapper =
+            document.getElementById("strengthWrapper");
+
+        const strengthText =
+            document.getElementById("strengthText");
+
+        const strengthBars =
+            document.querySelectorAll(".strength-bar");
+
+
+        passwordInput.addEventListener("input", function () {
+
+            const password =
+                passwordInput.value;
+
+
+            if (password.length === 0) {
+
+                strengthWrapper.style.display = "none";
+
+                return;
+
+            }
+
+
+            strengthWrapper.style.display = "block";
+
+
+            let score = 0;
+
+
+            if (password.length >= 8) score++;
+
+            if (/[A-Z]/.test(password)) score++;
+
+            if (/[0-9]/.test(password)) score++;
+
+            if (/[^A-Za-z0-9]/.test(password)) score++;
+
+
+            const strengthLabels = [
+                "",
+                "Weak password",
+                "Fair password",
+                "Good password",
+                "Strong password"
+            ];
+
+
+            strengthText.textContent =
+                strengthLabels[score];
+
+
+            strengthBars.forEach(function (bar, index) {
+
+                bar.style.background =
+                    index < score ? "#087df5" : "#e7edf4";
+
+            });
+
+        });
+
+
+
+        // PASSWORD MATCH VALIDATION
+
+        const confirmPassword =
+            document.getElementById("confirm_password");
+
+        const passwordError =
+            document.getElementById("passwordError");
+
+
+        function checkPasswords() {
+
+            if (
+                confirmPassword.value.length > 0 &&
+                passwordInput.value !== confirmPassword.value
+            ) {
+
+                passwordError.style.display = "block";
+
+                confirmPassword.setCustomValidity(
+                    "Passwords do not match"
+                );
+
+            } else {
+
+                passwordError.style.display = "none";
+
+                confirmPassword.setCustomValidity("");
+
+            }
+
+        }
+
+
+        passwordInput.addEventListener(
+            "input",
+            checkPasswords
+        );
+
+
+        confirmPassword.addEventListener(
+            "input",
+            checkPasswords
+        );
+
+
+
+        // MOBILE NUMBER VALIDATION
+
+        const mobileInput =
+            document.getElementById("mobile_number");
+
+
+        mobileInput.addEventListener("input", function () {
+
+            this.value =
+                this.value.replace(/\D/g, "").slice(0, 10);
+
+        });
+
+
+
+        // FORM SUBMISSION VALIDATION
+
+        const registerForm =
+            document.getElementById("registerForm");
+
+
+        registerForm.addEventListener("submit", function (event) {
+
+            checkPasswords();
+
+
+            if (!registerForm.checkValidity()) {
+
+                event.preventDefault();
+
+                registerForm.reportValidity();
+
+            }
+
+        });
+
+
+    </script>
+
+
+</body>
+
+</html>

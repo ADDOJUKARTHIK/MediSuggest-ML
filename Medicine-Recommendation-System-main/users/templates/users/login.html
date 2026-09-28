@@ -1,0 +1,1064 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | MediSuggest-ML</title>
+
+
+    <style>
+
+        /* =========================
+           GLOBAL STYLES
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f2f7fd;
+            color: #17375f;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        button,
+        input {
+            font-family: inherit;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            height: 78px;
+            background: rgba(255, 255, 255, 0.97);
+            border-bottom: 1px solid #e4edf7;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6%;
+        }
+
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 13px;
+            background: linear-gradient(135deg, #087df5, #00b8d9);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 23px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(8, 125, 245, 0.18);
+        }
+
+
+        .logo-text h2 {
+            font-size: 20px;
+            color: #0756b8;
+            line-height: 1.2;
+        }
+
+
+        .logo-text span {
+            display: block;
+            font-size: 10px;
+            color: #8193a9;
+            margin-top: 3px;
+        }
+
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+
+        .nav-links a {
+            color: #60758e;
+            font-size: 13px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+
+        .nav-links a:hover {
+            color: #087df5;
+        }
+
+
+        .nav-links a.active {
+            color: #087df5;
+        }
+
+
+        .nav-register {
+            background: #087df5;
+            color: white !important;
+            padding: 11px 20px;
+            border-radius: 9px;
+        }
+
+
+        .nav-register:hover {
+            background: #0756b8;
+        }
+
+
+        /* =========================
+           MAIN LOGIN SECTION
+        ========================= */
+
+        .login-section {
+            min-height: calc(100vh - 78px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 55px 20px;
+            background:
+                radial-gradient(circle at 10% 20%, #e2f3ff, transparent 32%),
+                radial-gradient(circle at 90% 80%, #dceeff, transparent 30%),
+                #f2f7fd;
+        }
+
+
+        .login-wrapper {
+            width: 100%;
+            max-width: 1030px;
+            min-height: 590px;
+            display: grid;
+            grid-template-columns: 0.95fr 1.05fr;
+            background: white;
+            border: 1px solid #e2edf8;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 20px 70px rgba(23, 74, 120, 0.12);
+        }
+
+
+        /* =========================
+           LEFT PANEL
+        ========================= */
+
+        .login-info {
+            background: linear-gradient(145deg, #087df5, #0756b8);
+            color: white;
+            padding: 45px 38px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        .login-info::before {
+            content: "";
+            position: absolute;
+            width: 330px;
+            height: 330px;
+            border: 40px solid rgba(255, 255, 255, 0.07);
+            border-radius: 50%;
+            top: -150px;
+            right: -160px;
+        }
+
+
+        .login-info::after {
+            content: "";
+            position: absolute;
+            width: 280px;
+            height: 280px;
+            border: 30px solid rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            bottom: -160px;
+            left: -160px;
+        }
+
+
+        .info-content {
+            position: relative;
+            z-index: 1;
+        }
+
+
+        .info-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 12px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+
+        .login-info h1 {
+            font-size: 36px;
+            line-height: 1.25;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+
+        .login-info h1 span {
+            color: #b9e6ff;
+        }
+
+
+        .login-info p {
+            font-size: 13px;
+            line-height: 1.9;
+            color: #d7ebff;
+            max-width: 340px;
+        }
+
+
+        .info-features {
+            position: relative;
+            z-index: 1;
+            margin-top: 35px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+
+        .info-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 12px;
+            color: #e2f2ff;
+        }
+
+
+        .info-feature-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.13);
+            border: 1px solid rgba(255, 255, 255, 0.13);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+
+        .info-bottom {
+            position: relative;
+            z-index: 1;
+            font-size: 10px;
+            color: #a9d2f3;
+            margin-top: 35px;
+        }
+
+
+        /* =========================
+           RIGHT LOGIN FORM
+        ========================= */
+
+        .login-form-panel {
+            padding: 48px 55px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+
+        .form-heading {
+            margin-bottom: 30px;
+        }
+
+
+        .form-heading .small-label {
+            color: #087df5;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+
+        .form-heading h2 {
+            font-size: 29px;
+            color: #17375f;
+            margin-bottom: 10px;
+        }
+
+
+        .form-heading p {
+            font-size: 13px;
+            color: #8799ae;
+        }
+
+
+        /* =========================
+           ERROR MESSAGE
+        ========================= */
+
+        .error {
+            background: #fff0f1;
+            border: 1px solid #ffd0d4;
+            color: #d33f4d;
+            padding: 12px 14px;
+            border-radius: 9px;
+            font-size: 12px;
+            margin-bottom: 22px;
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           FORM ELEMENTS
+        ========================= */
+
+        .form-group {
+            margin-bottom: 21px;
+        }
+
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            color: #425d7a;
+            margin-bottom: 8px;
+        }
+
+
+        .input-wrapper {
+            position: relative;
+        }
+
+
+        .input-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9cafc3;
+            font-size: 16px;
+            pointer-events: none;
+        }
+
+
+        .form-input {
+            width: 100%;
+            padding: 14px 14px 14px 43px;
+            border: 1px solid #dbe7f2;
+            border-radius: 10px;
+            outline: none;
+            background: #fbfdff;
+            color: #17375f;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+
+        .form-input::placeholder {
+            color: #a8b7c8;
+        }
+
+
+        .form-input:focus {
+            border-color: #087df5;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(8, 125, 245, 0.08);
+        }
+
+
+        .password-input {
+            padding-right: 45px;
+        }
+
+
+        .password-toggle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: transparent;
+            color: #849ab1;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+
+        .password-toggle:hover {
+            color: #087df5;
+        }
+
+
+        /* =========================
+           REMEMBER ME
+        ========================= */
+
+        .form-options {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin: 5px 0 25px;
+        }
+
+
+        .remember-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #8193a9;
+            font-size: 11px;
+            cursor: pointer;
+        }
+
+
+        .remember-label input {
+            width: 14px;
+            height: 14px;
+            accent-color: #087df5;
+            cursor: pointer;
+        }
+
+
+        .forgot-link {
+            font-size: 11px;
+            font-weight: 700;
+            color: #087df5;
+        }
+
+
+        .forgot-link:hover {
+            text-decoration: underline;
+        }
+
+
+        /* =========================
+           LOGIN BUTTON
+        ========================= */
+
+        .login-button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #087df5, #0756b8);
+            color: white;
+            font-size: 14px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(8, 125, 245, 0.17);
+            transition: 0.3s;
+        }
+
+
+        .login-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(8, 125, 245, 0.28);
+        }
+
+
+        .login-button:active {
+            transform: translateY(0);
+        }
+
+
+        /* =========================
+           REGISTER LINK
+        ========================= */
+
+        .register-prompt {
+            text-align: center;
+            margin-top: 25px;
+            color: #91a1b4;
+            font-size: 12px;
+        }
+
+
+        .register-prompt a {
+            color: #087df5;
+            font-weight: 700;
+        }
+
+
+        .register-prompt a:hover {
+            text-decoration: underline;
+        }
+
+
+        .form-footer {
+            text-align: center;
+            margin-top: 35px;
+            padding-top: 20px;
+            border-top: 1px solid #edf2f7;
+            color: #a0afc0;
+            font-size: 10px;
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           RESPONSIVE DESIGN
+        ========================= */
+
+        @media (max-width: 850px) {
+
+            .navbar {
+                padding: 0 25px;
+            }
+
+            .login-wrapper {
+                max-width: 550px;
+                grid-template-columns: 1fr;
+            }
+
+            .login-info {
+                padding: 35px 30px;
+            }
+
+            .login-info h1 {
+                font-size: 29px;
+            }
+
+            .info-features {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
+                margin-top: 25px;
+            }
+
+            .info-feature {
+                flex-direction: column;
+                text-align: center;
+                font-size: 11px;
+                gap: 7px;
+            }
+
+            .info-bottom {
+                margin-top: 25px;
+            }
+
+            .login-form-panel {
+                padding: 40px 35px;
+            }
+
+        }
+
+
+        @media (max-width: 550px) {
+
+            .navbar {
+                height: auto;
+                min-height: 70px;
+                padding: 15px 20px;
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+
+            .nav-links {
+                gap: 14px;
+            }
+
+            .nav-links a {
+                font-size: 11px;
+            }
+
+            .nav-register {
+                padding: 8px 12px;
+            }
+
+            .login-section {
+                padding: 25px 12px;
+            }
+
+            .login-wrapper {
+                border-radius: 18px;
+            }
+
+            .login-info {
+                padding: 30px 25px;
+            }
+
+            .login-info h1 {
+                font-size: 27px;
+            }
+
+            .login-info p {
+                font-size: 12px;
+            }
+
+            .info-features {
+                grid-template-columns: 1fr;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .info-feature {
+                flex-direction: row;
+                text-align: left;
+            }
+
+            .login-form-panel {
+                padding: 35px 25px;
+            }
+
+            .form-heading h2 {
+                font-size: 26px;
+            }
+
+            .form-options {
+                align-items: flex-start;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <header class="navbar">
+
+
+        <a href="/" class="logo">
+
+
+            <div class="logo-icon">
+                ♥
+            </div>
+
+
+            <div class="logo-text">
+
+                <h2>MediSuggest</h2>
+
+                <span>Medicine Recommendation System</span>
+
+            </div>
+
+
+        </a>
+
+
+
+        <nav class="nav-links">
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/login/" class="active">
+                Login
+            </a>
+
+            <a href="/register/" class="nav-register">
+                Register
+            </a>
+
+        </nav>
+
+
+    </header>
+
+
+
+    <!-- =========================
+         LOGIN SECTION
+    ========================= -->
+
+    <main class="login-section">
+
+
+        <div class="login-wrapper">
+
+
+
+            <!-- =========================
+                 LEFT INFORMATION PANEL
+            ========================= -->
+
+            <section class="login-info">
+
+
+                <div class="info-content">
+
+
+                    <div class="info-badge">
+                        ✦ Welcome Back
+                    </div>
+
+
+                    <h1>
+                        Your Health,<br>
+                        <span>Our Intelligent</span><br>
+                        Support.
+                    </h1>
+
+
+                    <p>
+                        Sign in to access the MediSuggest-ML
+                        platform and explore your health
+                        information analysis features.
+                    </p>
+
+
+
+                    <div class="info-features">
+
+
+                        <div class="info-feature">
+
+                            <div class="info-feature-icon">
+                                🩺
+                            </div>
+
+                            Health Information
+
+                        </div>
+
+
+
+                        <div class="info-feature">
+
+                            <div class="info-feature-icon">
+                                🧠
+                            </div>
+
+                            ML-Based Analysis
+
+                        </div>
+
+
+
+                        <div class="info-feature">
+
+                            <div class="info-feature-icon">
+                                🔒
+                            </div>
+
+                            Account Access
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="info-bottom">
+
+                    © 2026 MediSuggest-ML | Academic Project
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =========================
+                 RIGHT LOGIN FORM
+            ========================= -->
+
+            <section class="login-form-panel">
+
+
+                <div class="form-heading">
+
+
+                    <span class="small-label">
+                        Account Login
+                    </span>
+
+
+                    <h2>
+                        Welcome Back! 👋
+                    </h2>
+
+
+                    <p>
+                        Enter your details to access your dashboard.
+                    </p>
+
+
+                </div>
+
+
+
+                <!-- ERROR MESSAGE -->
+
+                {% if error %}
+
+                    <div class="error" role="alert">
+
+                        ⚠️ {{ error }}
+
+                    </div>
+
+                {% endif %}
+
+
+
+                <!-- LOGIN FORM -->
+
+                <form method="POST" action="/login/">
+
+                    {% csrf_token %}
+
+
+
+                    <!-- USERNAME -->
+
+                    <div class="form-group">
+
+
+                        <label for="user_name">
+                            User Name
+                        </label>
+
+
+                        <div class="input-wrapper">
+
+
+                            <span class="input-icon">
+                                ◉
+                            </span>
+
+
+                            <input
+                                type="text"
+                                id="user_name"
+                                name="user_name"
+                                class="form-input"
+                                placeholder="Enter your username"
+                                autocomplete="username"
+                                required
+                            >
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="form-group">
+
+
+                        <label for="password">
+                            Password
+                        </label>
+
+
+                        <div class="input-wrapper">
+
+
+                            <span class="input-icon">
+                                🔒
+                            </span>
+
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                class="form-input password-input"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required
+                            >
+
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                id="togglePassword"
+                                aria-label="Show password"
+                            >
+                                👁
+                            </button>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- REMEMBER / FORGOT -->
+
+                    <div class="form-options">
+
+
+                        <label class="remember-label">
+
+                            <input
+                                type="checkbox"
+                                name="remember_me"
+                                value="1"
+                            >
+
+                            Remember Me
+
+                        </label>
+
+
+                        <!-- Connect this to your Django
+                             password reset URL -->
+
+                        <a
+                            href="/forgot-password/"
+                            class="forgot-link"
+                        >
+                            Forgot Password?
+
+                        </a>
+
+
+                    </div>
+
+
+
+                    <!-- LOGIN BUTTON -->
+
+                    <button
+                        type="submit"
+                        class="login-button"
+                    >
+
+                        Login to Dashboard →
+
+                    </button>
+
+
+                </form>
+
+
+
+                <!-- REGISTER -->
+
+                <p class="register-prompt">
+
+                    Don't have an account?
+
+                    <a href="/register/">
+                        Create Account
+                    </a>
+
+                </p>
+
+
+
+                <!-- FOOTER -->
+
+                <div class="form-footer">
+
+                    🔒 Your account credentials should be kept private.<br>
+
+                    MediSuggest-ML | Informational Healthcare Platform
+
+                </div>
+
+
+            </section>
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         PASSWORD VISIBILITY SCRIPT
+    ========================= -->
+
+    <script>
+
+        const togglePassword =
+            document.getElementById("togglePassword");
+
+        const passwordInput =
+            document.getElementById("password");
+
+
+        togglePassword.addEventListener("click", function () {
+
+            const isPassword =
+                passwordInput.type === "password";
+
+
+            passwordInput.type =
+                isPassword ? "text" : "password";
+
+
+            togglePassword.textContent =
+                isPassword ? "🙈" : "👁";
+
+
+            togglePassword.setAttribute(
+                "aria-label",
+                isPassword ? "Hide password" : "Show password"
+            );
+
+        });
+
+    </script>
+
+
+</body>
+
+</html>
